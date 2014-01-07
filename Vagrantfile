@@ -3,11 +3,11 @@
 
 # apart from the middleware node, create
 # this many nodes in addition to the middleware
-INSTANCES=5
+INSTANCES=1
 
 # the nodes will be called middleware.example.net
 # and node0.example.net, you can change this here
-DOMAIN="example.net"
+DOMAIN="croome.org"
 
 # these nodes do not need a lot of RAM, 384 is
 # is enough but you can tweak that here
@@ -15,7 +15,7 @@ MEMORY=384
 
 # the instances is a hostonly network, this will
 # be the prefix to the subnet they use
-SUBNET="192.168.2"
+SUBNET="192.168.3"
 
 Vagrant.configure("2") do |config|
   config.vm.define :middleware do |vmconfig|
