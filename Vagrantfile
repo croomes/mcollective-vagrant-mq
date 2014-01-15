@@ -15,7 +15,7 @@ MEMORY=384
 
 # the instances is a hostonly network, this will
 # be the prefix to the subnet they use
-SUBNET="192.168.3"
+SUBNET="192.168.4"
 
 Vagrant.configure("2") do |config|
   config.vm.define :middleware do |vmconfig|

@@ -2,12 +2,15 @@ class roles::middleware {
   service{"iptables": ensure => stopped}
 
   class{"repos": } ->
-
-  class{"redis":
-    conf_port => '6379',
-    conf_bind => '0.0.0.0'
+  package {"stomp":
+    ensure   => '1.2.16',
+    provider => gem,
   } ->
-
+  class{"java":
+    distribution => 'jdk',
+    version      => 'latest',
+  }
+  class{"activemq": } ->
   class{"puppet": } ->
   class{"nagios": } ->
   class{"puppet::master": } ->

@@ -4,17 +4,17 @@ What?
 A quick way to get a mcollective network built for testing or evaluating MCollective.
 
 The network will consist of a single node that acts as a middleware server using
-Redis and a configurable amount of nodes under management.  On a 32GB machine I
-have no problem running 26 machines using this repository.
+ActiveMQ and a configurable amount of nodes under management.  
 
-This consists of a Vagrant file and a few **very** simple Puppet Modules that does the
+This consists of a Vagrant file and a few **very** simple Puppet Modules that do the
 simplest possible thing to get a MCollective setup going.
 
-This setup uses Redis for the middleware, discovery and registration thus providing
-a very light weight and fast setup.  This is a setup optimized for a demo environment
-in production you're likely to use middleware like ActiveMQ or RabbitMQ.
+This is essentially a copy of R.I.Pienaar's [mcollective-vagrant](https://github.com/ripienaar/mcollective-vagrant),
+with Redis removed and ActiveMQ added.  I will try to keep in sync as much as possible,
+but would recommend you stick with mcollective-vagrant unless you have a need to test
+or develop against an ActiveMQ-backed collective.
 
-This will setup the latest development MCollective along with the following plugins:
+It will setup the latest development MCollective along with the following plugins:
 
    * [Package Agent](https://github.com/puppetlabs/mcollective-package-agent)
    * [Service Agent](https://github.com/puppetlabs/mcollective-service-agent)
@@ -31,8 +31,8 @@ Setup?
 Assuming you have a working Vagrant setup on your system it should be real simple
 to get going:
 
-    $ git clone git://github.com/ripienaar/mcollective-vagrant.git
-    $ cd mcollective-vagrant
+    $ git clone git://github.com/croomes/mcollective-vagrant-mq.git
+    $ cd mcollective-vagrant-mq
 
 You should now edit the Vagrantfile and adjust the constants at the top to your
 tastes:
@@ -482,9 +482,8 @@ copied to the nodes.  So if you want to test some plugin you're working on just 
 in there and run _vagrant provision_
 
 The EPEL and Puppet Labs repositories are on the machines and all of the plugins mentioned
-in the first section of this document are installed from there.  Some plugins though like
-the Redis ones aren't yet available at Puppet Labs so for now they are deployed from the
-module lib dir.
+in the first section of this document are installed from there.  Some plugins aren't yet 
+available at Puppet Labs so for now they are deployed from the module lib dir.
 
 There is a package repo in _deploy/packages_ with some dependencies and this repo is
 added to all the nodes, so if you drop a new package in there just run _createrepo_ in
